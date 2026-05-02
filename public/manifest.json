@@ -1,0 +1,12 @@
+{
+  "name": "Tavern Missions",
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "description": "Sistema de missões cooperativas com timer e cliques",
+  "action": {
+    "title": "Tavern Missions",
+    "popover": "/tavern-missions/index.html",
+    "height": 620,
+    "width": 400
+  }
+}

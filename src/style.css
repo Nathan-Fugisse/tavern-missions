@@ -1,0 +1,545 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0d1117;
+  --bg-card: #161b22;
+  --border: #30363d;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --gold: #c9a227;
+  --gold-dark: #a8841e;
+  --green: #2ea043;
+  --red: #da3633;
+  --yellow: #d29922;
+  --blue: #58a6ff;
+  --purple: #8957e5;
+
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-dark);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-dark);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+  color: var(--text-secondary);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.guild-panel {
+  padding: 12px;
+}
+
+.guild-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid var(--gold);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.guild-icon {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(201, 162, 39, 0.15);
+  border: 1px solid var(--gold);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.guild-info h1 {
+  font-size: 17px;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.guild-stats {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.badge.success {
+  background: rgba(46,160,67,0.15);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.badge.player-badge {
+  background: rgba(137,87,229,0.15);
+  border-color: var(--purple);
+  color: var(--purple);
+}
+
+.badge.gm-badge {
+  background: rgba(201,162,39,0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.config-section {
+  margin-bottom: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.config-section summary {
+  padding: 10px 14px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 13px;
+  user-select: none;
+}
+
+.config-section summary:hover {
+  color: var(--text-primary);
+}
+
+.config-form {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.create-mission-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.create-mission-section h2 {
+  font-size: 15px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--gold);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: white;
+  font-family: inherit;
+}
+
+.btn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  width: 100%;
+  margin-top: 4px;
+}
+
+.btn-secondary {
+  background: var(--border);
+}
+
+.btn-success {
+  background: var(--green);
+}
+
+.btn-warning {
+  background: var(--yellow);
+  color: #000;
+}
+
+.btn-danger {
+  background: var(--red);
+}
+
+.btn-sm {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.btn-click {
+  width: 100%;
+  padding: 20px;
+  font-size: 22px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #da3633, #a31515);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.1s;
+  user-select: none;
+  font-family: inherit;
+  box-shadow: 0 4px 15px rgba(218, 54, 51, 0.3);
+}
+
+.btn-click:hover {
+  background: linear-gradient(135deg, #e64e4b, #c42020);
+  box-shadow: 0 6px 20px rgba(218, 54, 51, 0.5);
+  transform: scale(1.02);
+}
+
+.btn-click:active,
+.btn-click.clicked {
+  transform: scale(0.94);
+  box-shadow: 0 2px 8px rgba(218, 54, 51, 0.3);
+}
+
+.missions-section {
+  margin-bottom: 12px;
+}
+
+.missions-section h2,
+.player-stats-section h2 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.mission-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.mission-card.active {
+  border-color: var(--yellow);
+  box-shadow: 0 0 16px rgba(210,153,34,0.15);
+}
+
+.mission-card.completed {
+  border-color: var(--green);
+  opacity: 0.8;
+}
+
+.mission-card.failed {
+  border-color: var(--red);
+  opacity: 0.65;
+}
+
+.mission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.mission-header h3 {
+  font-size: 14px;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.status-badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.status-badge.waiting {
+  background: rgba(139,148,158,0.2);
+  color: var(--text-secondary);
+}
+
+.status-badge.active {
+  background: rgba(210,153,34,0.2);
+  color: var(--yellow);
+  animation: pulse 2s infinite;
+}
+
+.status-badge.completed {
+  background: rgba(46,160,67,0.2);
+  color: var(--green);
+}
+
+.status-badge.failed {
+  background: rgba(218,54,51,0.2);
+  color: var(--red);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.mission-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.mission-progress {
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 10px;
+  background: var(--bg-dark);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 6px;
+  border: 1px solid var(--border);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--yellow));
+  border-radius: 5px;
+  transition: width 0.4s ease;
+  min-width: 2px;
+}
+
+.progress-fill.animated {
+  background: linear-gradient(
+    90deg,
+    var(--gold),
+    var(--yellow),
+    var(--gold)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.time-danger {
+  color: var(--red) !important;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+}
+
+.my-contribution {
+  font-size: 12px;
+  color: var(--blue);
+  margin-bottom: 10px;
+  padding: 7px 10px;
+  background: rgba(88,166,255,0.08);
+  border: 1px solid rgba(88,166,255,0.2);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contribution-percent {
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+
+.contributors {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.contributor {
+  background: rgba(255,255,255,0.06);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.mission-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.waiting-message {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 12px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 30px 16px;
+  color: var(--text-secondary);
+}
+
+.empty-state p {
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.player-stats-section {
+  margin-bottom: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.section-divider {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 14px 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
