@@ -542,4 +542,135 @@ textarea {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
+  /* ================================
+   ABAS (TABS)
+================================ */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.tab:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.05);
+}
+
+.tab.active {
+  background: var(--gold);
+  color: #000;
+}
+
+/* ================================
+   CHECKBOX DE MISSÃO
+================================ */
+.checkbox-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.checkbox {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.checkbox-area[style*="cursor"] .checkbox {
+  transition: transform 0.2s;
+}
+
+.checkbox-area[style*="cursor"]:hover .checkbox {
+  transform: scale(1.2);
+}
+
+.line-through {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.completed-by {
+  font-size: 12px;
+  color: var(--green);
+  margin-top: 6px;
+  padding: 5px 8px;
+  background: rgba(46,160,67,0.1);
+  border-radius: 6px;
+}
+
+/* ================================
+   RANKING E PROGRESSO DOS PLAYERS
+================================ */
+.players-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.player-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.progress-bar.small {
+  height: 6px;
+}
+
+.progress-fill.completed-fill {
+  background: linear-gradient(90deg, var(--green), #34d058) !important;
+}
+
+.winner-msg {
+  text-align: center;
+  font-size: 14px;
+  color: var(--gold);
+  padding: 10px;
+  background: rgba(201,162,39,0.1);
+  border: 1px solid rgba(201,162,39,0.3);
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+.ranking-section {
+  margin-top: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ranking-section summary {
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 12px;
+  user-select: none;
+}
+
+.ranking-section .players-list {
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+}
 }

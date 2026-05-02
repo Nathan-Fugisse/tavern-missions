@@ -1,58 +1,74 @@
 import OBR from "@owlbear-rodeo/sdk";
-import type { GuildBoard, Mission } from "./types";
+import type { TavernBoard, GuildMission, ClickChallenge } from "./types";
 
 const METADATA_KEY = "com.tavern-missions/board";
 
-export function getDefaultBoard(): GuildBoard {
+export function getDefaultBoard(): TavernBoard {
   return {
-    missions: [],
-    guildName: "Taverna do Aventureiro",
-    guildLevel: 1,
+    guildMissions: [],
+    clickChallenges: [],
+    tavernName: "Taverna do Aventureiro",
+    tavernLevel: 1,
     totalCompleted: 0,
   };
 }
 
-export async function loadBoard(): Promise<GuildBoard> {
+export async function loadBoard(): Promise<TavernBoard> {
   const metadata = await OBR.room.getMetadata();
   const raw = metadata[METADATA_KEY];
   if (raw && typeof raw === "object") {
-    return raw as unknown as GuildBoard;
+    return raw as unknown as TavernBoard;
   }
   return getDefaultBoard();
 }
 
-export async function saveBoard(board: GuildBoard): Promise<void> {
+export async function saveBoard(board: TavernBoard): Promise<void> {
   await OBR.room.setMetadata({
     [METADATA_KEY]: board as unknown as Record<string, unknown>,
   });
 }
 
-export function createMission(
+export function createGuildMission(
+  title: string,
+  description: string
+): GuildMission {
+  return {
+    id: crypto.randomUUID(),
+    title,
+    description,
+    completed: false,
+    completedBy: null,
+    completedByName: null,
+  };
+}
+
+export function createClickChallenge(
   title: string,
   description: string,
   targetClicks: number,
   timeLimit: number,
   createdBy: string
-): Mission {
+): ClickChallenge {
   return {
     id: crypto.randomUUID(),
     title,
     description,
     targetClicks,
-    currentClicks: 0,
     timeLimit,
     timeRemaining: timeLimit,
     status: "waiting",
     createdBy,
-    contributors: {},
+    playerClicks: {},
+    winner: null,
+    winnerName: null,
   };
 }
 
-export function onBoardChange(callback: (board: GuildBoard) => void): void {
+export function onBoardChange(callback: (board: TavernBoard) => void): void {
   OBR.room.onMetadataChange((metadata) => {
     const raw = metadata[METADATA_KEY];
     if (raw && typeof raw === "object") {
-      callback(raw as unknown as GuildBoard);
+      callback(raw as unknown as TavernBoard);
     }
   });
 }
@@ -65,4 +81,8 @@ export function formatTime(seconds: number): string {
 
 export function getProgressPercent(current: number, target: number): number {
   return Math.min(100, Math.round((current / target) * 100));
+}
+
+export async function sendNotification(message: string): Promise<void> {
+  await OBR.notification.show(message);
 }
